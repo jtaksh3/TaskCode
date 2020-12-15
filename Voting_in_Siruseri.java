@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Main
+public class Voting_in_Siruseri
 {
     public static void mergeArrays(int arr1[], int arr2[], int arr3[], int arr4[], int arr5[], int a, int b, int c, int d, int e, int merged[]) {
         int i = 0, j = 0, k = 0, l = 0, m = 0, n = 0;
@@ -56,6 +56,7 @@ public class Main
             dar[i] = scan.nextInt();
         for(int i = 0; i < e; i++)
             ear[i] = scan.nextInt();
+        scan.close();
 
         Arrays.sort(arr);
         Arrays.sort(barr);
