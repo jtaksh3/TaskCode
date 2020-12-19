@@ -1,3 +1,5 @@
+/*PROBLEM STATEMENT : Given an integer, the task is to find factorial of the number.*/
+
 import java.util.*;
 
 class Factorial {

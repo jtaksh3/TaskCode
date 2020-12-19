@@ -1,3 +1,6 @@
+/*PROBLEM STATEMENT : Given an array of N integers, and an integer K, find the number of pairs of elements
+in the array whose sum is equal to K.*/
+
 import java.util.*;
 
 public class Count_Pairs_with_Given_Sum {
