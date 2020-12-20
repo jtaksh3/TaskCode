@@ -2,7 +2,7 @@
 
 import java.util.*;
 
-class Factorial {
+public class Factorial {
 
     static int multiply(int arr[], int x, int arr_size) {
         int carry = 0;

@@ -3,7 +3,7 @@ n/k times*/
 
 import java.util.*;
 
-class Elements_Occurence_nk {
+public class Elements_Occurence_nk {
 
     static class eleCount {
         int e;

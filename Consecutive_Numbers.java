@@ -3,7 +3,7 @@ that elements in the subsequence are consecutive integers, the consecutive numbe
 
 import java.util.*;
 
-class Consecutive_Numbers {
+public class Consecutive_Numbers {
 
     static int findLongestConseqSubseq(int arr[], int N) {
         HashSet<Integer> hs = new HashSet<Integer>();

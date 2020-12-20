@@ -2,7 +2,7 @@
 
 import java.util.Scanner;
 
-class Buying_Selling_Stock_Atmost_Twice {
+public class Buying_Selling_Stock_Atmost_Twice {
 
     static int maxProfit(int price[], int n) {
         int buy1, profit1, buy2, profit2;
