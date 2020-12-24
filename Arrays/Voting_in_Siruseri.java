@@ -1,84 +1,56 @@
+/*PROBLEM STATEMENT : Voting in Siruseri
+Zonal Computing Olympiad 2010
+Elections are on for the Siruseri Town Council. Elections in Siruseri work in a rather odd manner. Each
+candidate is assigned a unique identification number. The town is divided into five zones and each zone
+proposes a list of candidates, in some arbitrary order, that it would like to nominate to the Council.
+Any candidate who is proposed by three or more zones is elected. There is no lower limit or upper limit
+on the size of the Council.
+Your task is to to calculate how many candidates are elected to the Council, given the lists proposed by
+the five zones.
+For example, suppose the candidates proposed by the five zones are as follows:
+    Zone 1: [12,387,15,162,5]
+    Zone 2: [14,162,92,387,7,748]
+    Zone 3: [14,5,12,387]
+    Zone 4: [17,952,12,92,398,849]
+    Zone 5: [14,5,92,12,387]
+In this example, 5 candidates are elected: these are [12,387,5,14,92].
+Input format
+The first line of the input contains five integers N1, N2 N3, N4 and N5, where Nj is the number of candidates
+proposed by zone j, 1 ≤ j ≤ 5. This is followed by five lines of space separated integers. For 1 ≤ j ≤ 5,
+line j+1 of the input has Nj integers representing the list of candidates proposed by zone j.
+Output format
+Your output should be a single line consisting of one integer, the total number of candidates elected to
+the Town Council.
+Testdata
+In all cases, 1 ≤ N1, N2, N3, N4, N5 ≤ 50,000. Each candidate ID is between 0 and 500,000. Also, each
+individual list is guaranteed to be free of duplicate entries.*/
+
 import java.util.*;
 
-public class Voting_in_Siruseri
-{
-    public static void mergeArrays(int arr1[], int arr2[], int arr3[], int arr4[], int arr5[], int a, int b, int c, int d, int e, int merged[]) {
-        int i = 0, j = 0, k = 0, l = 0, m = 0, n = 0;
+public class Voting_in_Siruseri {
 
-        while (i<a && j<b && k<c && l<d && m<e) {
-            if (arr1[i] < arr2[j] && arr1[i] < arr3[k] && arr1[i] < arr4[l]  && arr1[i] < arr5[m])
-                merged[n++] = arr1[i++];
-            else if (arr2[j] < arr3[k] && arr2[j] < arr4[l]  && arr2[j] < arr5[m])
-                merged[n++] = arr2[j++];
-            else if (arr3[k] < arr4[l]  && arr3[k] < arr5[m])
-                merged[n++] = arr3[k++];
-            else if (arr4[l] < arr5[m])
-                merged[n++] = arr4[l++];
-            else
-                merged[n++] = arr5[m++];
-        }
-
-        while (i < a)
-            merged[n++] = arr1[i++];
-        while (j < b)
-            merged[n++] = arr2[j++];
-        while (k < c)
-            merged[n++] = arr3[k++];
-        while (l < d)
-            merged[n++] = arr4[l++];
-        while (m < e)
-            merged[n++] = arr5[m++];
-    }
-
-    public static void main (String[]args) {
+    public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        int a = scan.nextInt();
-        int b = scan.nextInt();
-        int c = scan.nextInt();
-        int d = scan.nextInt();
-        int e = scan.nextInt();
 
-        int[] arr = new int[a];
-        int[] barr = new int[b];
-        int[] carr = new int[c];
-        int[] dar = new int[d];
-        int[] ear = new int[e];
+        int total = 0;
 
-        int[] merged = new int[a+b+c+d+e];
+        for (int i = 0; i < 5; i++)
+            total += scan.nextInt();
 
-        for(int i = 0; i < a; i++)
-            arr[i] = scan.nextInt();
-        for(int i = 0; i < b; i++)
-            barr[i] = scan.nextInt();
-        for(int i = 0; i < c; i++)
-            carr[i] = scan.nextInt();
-        for(int i = 0; i < d; i++)
-            dar[i] = scan.nextInt();
-        for(int i = 0; i < e; i++)
-            ear[i] = scan.nextInt();
+        HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
+
+        for (int i = 0; i < total; i++) {
+            int a = scan.nextInt();
+            if (!hm.containsKey(a))
+                hm.put(a, 0);
+            hm.put(a, hm.get(a) + 1);
+        }
         scan.close();
 
-        Arrays.sort(arr);
-        Arrays.sort(barr);
-        Arrays.sort(carr);
-        Arrays.sort(dar);
-        Arrays.sort(ear);
-
-        mergeArrays(arr, barr, carr, dar, ear, a, b, c, d, e, merged);
-
         int counter = 0;
-
-        int i = 0;
-        while(i < merged.length){
-            int count = 1;
-            int j = i + 1;
-            while (j != merged.length && merged[i] == merged[j]) {
-                count++;
-                j++;
-            }
-            if(count >= 3)
+        for (Map.Entry<Integer, Integer> m : hm.entrySet()) {
+            if (m.getValue() >= 3)
                 counter++;
-            i = j;
         }
         System.out.println(counter);
     }

@@ -1,3 +1,7 @@
+/*PROBLEM STATEMENT : There are 2 sorted arrays A and B of size n each. Write an algorithm to find the
+median of the array obtained after merging the above 2 arrays(i.e. array of length 2n). The complexity
+should be O(log(n)).*/
+
 import java.io.*;
 
 public class Median_of_Two_Sorted_Arrays_Same_Size {

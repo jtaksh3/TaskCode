@@ -1,3 +1,6 @@
+/*PROBLEM STATEMENT : Given an array of positive and negative numbers. Find if there is a subarray
+(of size at-least one) with 0 sum.*/
+
 import java.util.*;
 
 public class SubArray_sum_Zero {
