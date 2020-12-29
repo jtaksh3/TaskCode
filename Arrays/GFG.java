@@ -1,8 +1,8 @@
-//PROBLEM STATEMENT : Union of two arrays count.
+/*package whatever //do not write package name here */
 
 import java.util.*;
 
-class Array_Union_Count {
+class GFG {
 
     static int return_union_count(int[] arr1, int arr2[], int n, int m) {
         int i = 0, j = 0, count = 0;
@@ -54,10 +54,10 @@ class Array_Union_Count {
             int arr2[] = new int[m];
             for (int i = 0; i < m; i++)
                 arr2[i] = scan.nextInt();
+            scan.close();
             Arrays.sort(arr1);
             Arrays.sort(arr2);
             System.out.println(return_union_count(arr1, arr2, n, m));
         }
-        scan.close();
     }
 }

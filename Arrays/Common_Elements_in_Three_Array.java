@@ -19,39 +19,20 @@ public class Common_Elements_in_Three_Array {
             while (k + 1 < n3 && C[k] == C[k + 1]) {
                 k++;
             }
-            if (A[i] == B[j] && B[j] == C[k]) {
+            if (A[i] == B[j] && B[j] == C[k])
                 al.add(A[i]);
-                i++;
-                j++;
-                k++;
-            } else if (A[i] < B[j] && A[i] < C[k]) {
-                i++;
-            } else if (A[i] > B[j] && B[j] < C[k]) {
-                j++;
-            } else if (C[k] < B[j] && A[i] > C[k]) {
-                k++;
-            } else if (A[i] == B[j]) {
-                if (A[i] < C[k]) {
-                    i++;
-                    j++;
-                } else {
-                    k++;
-                }
-            } else if (A[i] == C[k]) {
-                if (A[i] < B[j]) {
-                    i++;
-                    k++;
-                } else {
-                    j++;
-                }
-            } else if (C[k] == B[j]) {
-                if (A[i] > C[k]) {
-                    k++;
-                    j++;
-                } else {
-                    i++;
-                }
+            else {
+                int max = Math.max(A[i], Math.max(B[j], C[k]));
+                if (A[i] == max)
+                    i--;
+                if (B[j] == max)
+                    j--;
+                if (C[k] == max)
+                    k--;
             }
+            i++;
+            j++;
+            k++;
         }
         return al;
     }
