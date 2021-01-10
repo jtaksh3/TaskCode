@@ -4,46 +4,90 @@ import java.util.*;
 
 public class Arrays_Intersection_Count {
 
+    static int intersectionCount(int[] arr1, int arr2[], int n, int m) {
+        int i = 0, j = 0, count = 0, flag1 = 0, flag2 = 0;
+        while (i < n && j < m) {
+            // Increment the i'th counter till the next value in arr1 is different
+            while (i + 1 < n && arr1[i] == arr1[i + 1]) {
+                i++;
+                // Used to check same value in arr1
+                flag1 = 1;
+            }
+            // Increment the j'th counter till the next value in arr2 is different
+            while (j + 1 < m && arr2[j] == arr2[j + 1]) {
+                j++;
+                // Used to check same value in arr1
+                flag2 = 1;
+            }
+            // Checks if value of arr1[i] == arr2[j],
+            // If true : increments their individual counter and count variable
+            if (arr1[i] == arr2[j]) {
+                count++;
+                i++;
+                j++;
+                flag1 = flag2 = 0;
+            }
+            // Checks if value of arr1[i] < arr2[j], If true : increments the i'th counter
+            // and count variable based on flag1
+            else if (arr1[i] < arr2[j]) {
+                if (flag1 == 1)
+                    count++;
+                i++;
+                flag1 = 0;
+            }
+            // Checks if value of arr1[i] > arr2[j], If true : increments the j'th counter
+            // and count variable based on flag2
+            else {
+                if (flag2 == 1)
+                    count++;
+                j++;
+                flag2 = 0;
+            }
+        }
+        // If i'th counter is smaller than n, then traverse through remaining elements
+        // of arr1 and count them based on flag1
+        while (i < n) {
+            while (i + 1 < n && arr1[i] == arr1[i + 1]) {
+                i++;
+                flag1 = 1;
+            }
+            if (flag1 == 1)
+                count++;
+            i++;
+            flag1 = 0;
+        }
+        // If j'th counter is smaller than n, then traverse through remaining elements
+        // of arr2 and count them based on flag2
+        while (j < m) {
+            while (j + 1 < m && arr2[j] == arr2[j + 1]) {
+                j++;
+                flag2 = 1;
+            }
+            if (flag2 == 1)
+                count++;
+            j++;
+            flag2 = 0;
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        System.out.print("Enter Size of Array1: ");
-        int n = scan.nextInt();
-        System.out.print("Enter Size of Array2: ");
-        int m = scan.nextInt();
-        System.out.println("Enter elements of Array1:");
-        int arr1[] = new int[n];
-        for (int i = 0; i < n; i++)
-            arr1[i] = scan.nextInt();
-        System.out.println("Enter elements of Array2:");
-        int arr2[] = new int[m];
-        for (int i = 0; i < m; i++)
-            arr2[i] = scan.nextInt();
-        scan.close();
-        Arrays.sort(arr1);
-        Arrays.sort(arr2);
-        int size = arr1[n - 1] > arr2[m - 1] ? arr1[n - 1] : arr2[m - 1];
-        int new_arr[] = new int[size + 1], count = 0;
-        ++new_arr[arr1[0]];
-        int i = 1, j = 0, itr = 0;
-        while (itr < (n > m ? n : m)) {
-            if (i < n) {
-                ++new_arr[arr1[i]];
-            }
-            if (j < m) {
-                ++new_arr[arr2[j]];
-            }
-            if(i < n && new_arr[arr1[i]] > 1) {
-                count++;
-                new_arr[arr1[i]] = -2147483648;
-            } else if(j < m && new_arr[arr2[j]] > 1) {
-                count++;
-                new_arr[arr2[j]] = -2147483648;
-            }
-            i++;
-            j++;
-            itr++;
+        int t = scan.nextInt();
+        while (t-- > 0) {
+            int n = scan.nextInt();
+            int m = scan.nextInt();
+            int arr1[] = new int[n];
+            for (int i = 0; i < n; i++)
+                arr1[i] = scan.nextInt();
+            int arr2[] = new int[m];
+            for (int i = 0; i < m; i++)
+                arr2[i] = scan.nextInt();
+            scan.close();
+            Arrays.sort(arr1);
+            Arrays.sort(arr2);
+            System.out.println(intersectionCount(arr1, arr2, n, m));
         }
-        System.out.println("Count of Intersection: " + count);
     }
 
 }
